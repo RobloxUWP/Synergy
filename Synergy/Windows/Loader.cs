@@ -14,13 +14,13 @@ namespace Synergy.Windows
             this.Resizable = false;
 
             this.Timer = new Timer();
-            this.Timer.Interval = 2000;
+            this.Timer.Interval = 1000;
             this.Timer.Tick += Timer_Tick;
             this.Timer.Start();
 
-            roundedProgressBar1.Progress = 20;
+            roundedProgressBar1.Progress = 1;
         }
 
-        private void Timer_Tick(object sender, EventArgs e) => roundedProgressBar1.Progress += 10;
+        private void Timer_Tick(object sender, EventArgs e) => roundedProgressBar1.Progress += 1;
     }
 }

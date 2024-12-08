@@ -10,7 +10,7 @@ namespace Synergy.Windows.Components
     internal class RoundedProgressBar : Panel
     {
         private int progress = 0;
-        private int progressMultiplier = 5;
+        private int progressMultiplier = 10;
         private int displayedProgress = 0;
         private readonly System.Timers.Timer animationTimer;
 
