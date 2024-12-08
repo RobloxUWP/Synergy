@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Windows\Components\RoundedProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Windows\Loader.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +95,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Injection.luau" />
     <Content Include="SynergyIconx256.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

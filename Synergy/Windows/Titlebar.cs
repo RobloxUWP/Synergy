@@ -9,6 +9,7 @@ namespace Synergy.Windows
     {
         Panel titlePanel;
         public Panel content;
+        public bool Resizable = true;
 
         // 1 time use util..
         private static GraphicsPath GetRoundedRectangle(Rectangle rect, int radius)
@@ -51,7 +52,6 @@ namespace Synergy.Windows
                 this.Controls.Add(titlePanel);
             }
         }
-
 
         #region Rounded Corners
 
@@ -128,7 +128,7 @@ namespace Synergy.Windows
 
             base.WndProc(ref m);
 
-            if (m.Msg == WM_NCHITTEST)
+            if (Resizable && m.Msg == WM_NCHITTEST)
             {
                 var cursorPosition = PointToClient(Cursor.Position);
                 int widthThreshold = 10;
