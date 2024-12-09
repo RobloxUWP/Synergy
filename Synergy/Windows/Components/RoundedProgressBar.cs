@@ -3,23 +3,21 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Timers;
 using System;
-using System.Diagnostics;
 
 namespace Synergy.Windows.Components
 {
     internal class RoundedProgressBar : Panel
     {
-        private int progress = 0;
-        private int progressMultiplier = 10;
-        private int displayedProgress = 0;
+        private float progress = 0;
+        private float displayedProgress = 0;
         private readonly System.Timers.Timer animationTimer;
 
         public int Progress
         {
-            get => progress / 5;
+            get => (int)progress;
             set
             {
-                progress = (value * progressMultiplier) < 0 ? 0 : (value * progressMultiplier) > (progressMultiplier * 100) ? (progressMultiplier * 100) : (value * progressMultiplier);
+                progress = value < 0 ? 0 : value > 100 ? 100 : value;
                 StartAnimation();
             }
         }
@@ -41,16 +39,16 @@ namespace Synergy.Windows.Components
 
         private void AnimateProgress(object sender, ElapsedEventArgs e)
         {
-            if (displayedProgress == progress)
+            if (Math.Abs(displayedProgress - progress) < 0.1f) // Allow for a small tolerance
             {
-                animationTimer.Stop();
-                return;
-            }
-
-            int maths = progress - displayedProgress;
-            displayedProgress += Math.Min(Math.Sign(maths) * 5, maths);
-            if (Math.Abs(progress - displayedProgress) < 2)
                 displayedProgress = progress;
+                animationTimer.Stop();
+            }
+            else
+            {
+                float step = Math.Sign(progress - displayedProgress) * 0.5f; // Smaller steps for smooth transition
+                displayedProgress += step;
+            }
 
             Invoke((MethodInvoker)Invalidate);
         }
@@ -70,7 +68,7 @@ namespace Synergy.Windows.Components
 
                 var realBackgroundRect = new Rectangle(0, 0, Width, Height);
                 var roundedBackgroundRect = new Rectangle(0, 0, Width, Height);
-                var progressRect = new Rectangle(0, 0, Width * displayedProgress / (progressMultiplier * 100), Height);
+                var progressRect = new Rectangle(0, 0, (int)(Width * displayedProgress / 100), Height);
 
                 using (var roundedBackgroundPath = new GraphicsPath())
                 using (var progressPath = new GraphicsPath())

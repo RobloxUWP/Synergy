@@ -21,6 +21,6 @@ namespace Synergy.Windows
             roundedProgressBar1.Progress = 1;
         }
 
-        private void Timer_Tick(object sender, EventArgs e) => roundedProgressBar1.Progress += 1;
+        private void Timer_Tick(object sender, EventArgs e) => roundedProgressBar1.Progress += 10;
     }
 }
