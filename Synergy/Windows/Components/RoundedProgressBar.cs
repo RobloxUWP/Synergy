@@ -46,7 +46,7 @@ namespace Synergy.Windows.Components
             }
             else
             {
-                float step = Math.Sign(progress - displayedProgress) * 0.5f; // Smaller steps for smooth transition
+                float step = Math.Sign(progress - displayedProgress); // Smaller steps for smooth transition
                 displayedProgress += step;
             }
 
