@@ -9,7 +9,7 @@ namespace System
     {
         public class MDI // Main directory information
         {
-            public static string mdiBase = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RobloxAutoLauncher\\";
+            public static string mdiBase = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Synergy\\";
             public static bool Init = false;
 
             public static void Initialize()

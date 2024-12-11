@@ -28,7 +28,7 @@ namespace Synergy
 
             processBarControl1.SetProgress(100);
 
-            MessageBox.Show("Installed", "RobloxAL Installer");
+            MessageBox.Show("Installed", "Synergy Installer");
         }
 
         private void RepairApp(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace Synergy
 
             RobloxClient.UpdateRoblox();
             processBarControl1.SetProgress(100);
-            MessageBox.Show("RobloxAutoLauncher to finish repair", "RobloxAL Installer");
+            MessageBox.Show("RobloxAutoLauncher to finish repair", "Synergy Installer");
         }
 
         private void UninstallApp(object sender, EventArgs e) // this one is instant so it doesnt really matter
@@ -59,7 +59,7 @@ namespace Synergy
 
             if (string.IsNullOrEmpty(versionPath))
             {
-                MessageBox.Show("Latest roblox version not detected (FATAL FAILURE)", "RobloxAL");
+                MessageBox.Show("Latest roblox version not detected (FATAL FAILURE)", "Synergy");
                 return;
             }
 

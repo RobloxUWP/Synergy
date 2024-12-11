@@ -37,7 +37,7 @@ namespace Synergy
             InitializeComponent();
 
             Resizable = false;
-            this.Text = "Synergy(SirHurt) - AutoLaunch";
+            this.Text = "Synergy - AutoLaunch";
 
             jobManager = new JobManager((value) =>
             {
@@ -106,8 +106,8 @@ namespace Synergy
 
         public void UpdateLabel()
         {
-            dots = (dots == 4) ? 0 : dots + 1;
-            label1.Text = $"{loadingSuffix} {new string('.', dots)}";//{GetGameTitle()}
+            dots = (dots == 3) ? 1 : dots + 1;
+            label1.Text = !loadingSuffix.EndsWith("!") ? $"{loadingSuffix}{new string('.', dots)}" : loadingSuffix;//{GetGameTitle()}
         }
 
         private void SuspendTimer_Tick(object sender, EventArgs e)

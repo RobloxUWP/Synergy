@@ -1,10 +1,11 @@
 ﻿#region Imports
 
 using Synergy.RobloxSDK;
-
+using Synergy.Windows;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq.Expressions;
 using System.MDI;
 using System.Security.Principal;
 using System.Threading;
@@ -53,12 +54,18 @@ namespace Synergy
 
             if (args.Length == 0)
             {
-                Application.Run(new InstallerWindow());
+                if (CheckAdminPerms())
+                    Application.Run(new InstallerWindow());
+
+                Application.Run(new MainWindow());
             }
             else
             {
                 if (args[0] == "--reinstall")
                     ReinstallRoblox();
+
+                if (args[0] == "--refresh")
+                    RefreshSynergy();
 
                 la = Launcher.ParseArgs(args[0]);
                 Task.Factory.StartNew(() => Application.Run(new LauncherWindow()));
@@ -76,7 +83,6 @@ namespace Synergy
                     LauncherWindow.Window.VersionValid();
                     Launchable = true;
 
-                    // NOTE: should probably put this on another thread..
                     string placeId = HttpUtility.UrlDecode(la.PlaceLauncherUrl).Split('&')[2].Split('=')[1];
                     RobloxClient.Process.curPlace = RobloxAPI.GetMainUniverse(placeId);
                     
@@ -86,6 +92,32 @@ namespace Synergy
         }
 
         public static bool Launchable = false;
+
+        private static void RefreshSynergy()
+        {
+            bool autolauncb = Program.config.KeyExists("AutoLaunch", "Options") && Program.config.Read("AutoLaunch", "Options") == "true";
+
+            if (autolauncb)
+            {
+                RobloxClient.Process.ReplaceRoblox();
+                Program.config.Write("RequiresReinstall", "0", "System");
+            }
+            else
+            {
+                string versionPath = RobloxClient.GetRobloxVersionPath();
+
+                if (string.IsNullOrEmpty(versionPath))
+                {
+                    MessageBox.Show("Latest roblox version not detected (FATAL FAILURE)", "Synergy");
+                    Program.config.Write("AutoLaunch", "false", "Options");
+                    return;
+                }
+
+                RobloxClient.Process.ReplaceRoblox(versionPath + "\\RobloxPlayerLauncher.exe");
+            }
+
+            RobloxClient.ExitApp();
+        }
 
         static void ReinstallRoblox()
         {
@@ -128,7 +160,7 @@ namespace Synergy
                 {
                     if (!CheckAdminPerms())
                     {
-                        MessageBox.Show("Roblox cant start due to needing a reinstall", "RobloxAL");
+                        MessageBox.Show("Roblox cant start due to needing a reinstall", "Synergy");
                         RobloxClient.ExitApp();
                     }
                 }

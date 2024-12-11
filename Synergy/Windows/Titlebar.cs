@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+
+using Synergy.SDK;
 
 namespace Synergy.Windows
 {
     public partial class Titlebar : Form
     {
-        Panel titlePanel;
-        public Panel content;
+        public Panel TitlePanel;
+
+        //public SolidGylphButton ExitPanel;
+        //public SolidGylphButton MinimizePanel;
+        //public SolidGylphButton SettingsPanel;
+
         public bool Resizable = true;
 
-        // 1 time use util..
-        private static GraphicsPath GetRoundedRectangle(Rectangle rect, int radius)
-        {
-            var path = new GraphicsPath();
-            path.AddArc(rect.X, rect.Y, radius, radius, 180, 90);
-            path.AddArc(rect.X + rect.Width - radius, rect.Y, radius, radius, 270, 90);
-            path.AddArc(rect.X + rect.Width - radius, rect.Y + rect.Height - radius, radius, radius, 0, 90);
-            path.AddArc(rect.X, rect.Y + rect.Height - radius, radius, radius, 90, 90);
-            path.CloseFigure();
-            return path;
-        }
+        // Segoe Fluent Icons - \uf8b0
 
         public Titlebar()
         {
@@ -39,18 +34,49 @@ namespace Synergy.Windows
             this.ResizeEnd += Titlebar_ResizeEnd;
             this.ResizeBegin += Titlebar_ResizeBegin;
 
+            #region UI
+
+            this.TitlePanel = new Panel
             {
-                titlePanel = new Panel
-                {
-                    Dock = DockStyle.Top,
-                    Height = 32,
-                    BackColor = Color.FromArgb(32,32,32)
-                };
-                titlePanel.MouseDown += TitlePanel_MouseDown;
-                titlePanel.MouseMove += TitlePanel_MouseMove;
-                titlePanel.Paint += TitlePanel_Paint;
-                this.Controls.Add(titlePanel);
-            }
+                Dock = DockStyle.Top,
+                Height = 32,
+                BackColor = Color.FromArgb(32, 32, 32)
+            };
+            this.TitlePanel.MouseDown += TitlePanel_MouseDown;
+            this.TitlePanel.MouseMove += TitlePanel_MouseMove;
+            this.TitlePanel.Paint += TitlePanel_Paint;
+
+            //SettingsPanel = new SolidGylphButton
+            //{
+            //    Dock = DockStyle.Right,
+            //    ForeColor = Color.White,
+            //    FontSize = 10,
+            //    Width = 26,
+            //    Content = "\uf8b0" // \uf8b0
+            //};
+            //this.TitlePanel.Controls.Add(SettingsPanel);
+            //
+            //MinimizePanel = new SolidGylphButton
+            //{
+            //    Dock = DockStyle.Right,
+            //    Width = 26,
+            //    ForeColor = Color.White,
+            //    Content = "\uef2d" // \uef2d
+            //};
+            //this.TitlePanel.Controls.Add(MinimizePanel);
+            //
+            //ExitPanel = new SolidGylphButton
+            //{
+            //    Dock = DockStyle.Right,
+            //    Width = 26,
+            //    ForeColor = Color.White,
+            //    Content = "\uef2c" // \uef2c
+            //};
+            //this.TitlePanel.Controls.Add(ExitPanel);
+
+            this.Controls.Add(TitlePanel);
+
+            #endregion
         }
 
         #region Rounded Corners
@@ -68,7 +94,7 @@ namespace Synergy.Windows
 
         private void Titlebar_ResizeEnd(object sender, EventArgs e)
         {
-            this.Region = new Region(GetRoundedRectangle(new Rectangle(0, 0, this.Width, this.Height), 20));
+            this.Region = new Region(Utils.GetRoundedRectangle(new Rectangle(0, 0, this.Width, this.Height), 10));
             this.Refresh();
         }
 
@@ -81,15 +107,15 @@ namespace Synergy.Windows
         Bitmap icon = null;
         private void TitlePanel_Paint(object sender, PaintEventArgs e)
         {
-            var titleFont = new Font("Arial", 10);
+            var titleFont = new Font("Segoe UI SemiBold", 9.5f);
             var titleSize = e.Graphics.MeasureString(this.Text, titleFont);
-            var titlePosition = new Point((titlePanel.Width - (int)titleSize.Width) / 2, (titlePanel.Height - (int)titleSize.Height) / 2);
+            var titlePosition = new Point((TitlePanel.Width - (int)titleSize.Width) / 2, (TitlePanel.Height - (int)titleSize.Height) / 2);
             e.Graphics.DrawString(this.Text, titleFont, Brushes.White, titlePosition);
 
             var iconSize = new Size(24,24);
             if (icon == null)
                 icon = new Bitmap(this.Icon.ToBitmap(), iconSize);
-            e.Graphics.DrawImage(icon, 10, (titlePanel.Height - iconSize.Height) / 2);
+            e.Graphics.DrawImage(icon, 10, (TitlePanel.Height - iconSize.Height) / 2);
         }
 
         private Point mouseOffset; // no static variables inside methods is DUMB

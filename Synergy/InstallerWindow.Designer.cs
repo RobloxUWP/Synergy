@@ -117,7 +117,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "RobloxAL Installer";
+            this.Text = "Synergy Installer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InstallerWindow_FormClosing);
             this.Load += new System.EventHandler(this.InstallerWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
