@@ -25,6 +25,7 @@ namespace Synergy.RobloxSDK
                 WorkingDirectory = Application.StartupPath,
                 RedirectStandardOutput = true, // TODO: read if it successfully injected or not
                 UseShellExecute = false,
+                Verb = "runas",
                 CreateNoWindow = true
             };
 

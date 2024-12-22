@@ -46,7 +46,7 @@
             // 
             this.roundedPanelButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.roundedPanelButton1.ButtonText = "Execute";
-            this.roundedPanelButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F);
+            this.roundedPanelButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.roundedPanelButton1.Location = new System.Drawing.Point(8, 286);
             this.roundedPanelButton1.Name = "roundedPanelButton1";
             this.roundedPanelButton1.Size = new System.Drawing.Size(79, 26);
@@ -57,7 +57,7 @@
             // 
             this.roundedPanelButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.roundedPanelButton2.ButtonText = "Clear";
-            this.roundedPanelButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F);
+            this.roundedPanelButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.roundedPanelButton2.Location = new System.Drawing.Point(93, 286);
             this.roundedPanelButton2.Name = "roundedPanelButton2";
             this.roundedPanelButton2.Size = new System.Drawing.Size(79, 26);
@@ -68,7 +68,7 @@
             // 
             this.roundedPanelButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.roundedPanelButton3.ButtonText = "Open File";
-            this.roundedPanelButton3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F);
+            this.roundedPanelButton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.roundedPanelButton3.Location = new System.Drawing.Point(178, 286);
             this.roundedPanelButton3.Name = "roundedPanelButton3";
             this.roundedPanelButton3.Size = new System.Drawing.Size(79, 26);
@@ -79,7 +79,7 @@
             // 
             this.roundedPanelButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.roundedPanelButton5.ButtonText = "Save File";
-            this.roundedPanelButton5.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F);
+            this.roundedPanelButton5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.roundedPanelButton5.Location = new System.Drawing.Point(263, 286);
             this.roundedPanelButton5.Name = "roundedPanelButton5";
             this.roundedPanelButton5.Size = new System.Drawing.Size(79, 26);
@@ -90,7 +90,7 @@
             // 
             this.roundedPanelButton6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.roundedPanelButton6.ButtonText = "Attach";
-            this.roundedPanelButton6.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F);
+            this.roundedPanelButton6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.roundedPanelButton6.Location = new System.Drawing.Point(615, 286);
             this.roundedPanelButton6.Name = "roundedPanelButton6";
             this.roundedPanelButton6.Size = new System.Drawing.Size(79, 26);

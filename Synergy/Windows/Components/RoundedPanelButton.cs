@@ -75,6 +75,20 @@ namespace Synergy.Windows.Components
             {
                 graphics.DrawString(Content, this.Font, textBrush, this.ClientRectangle, format);
             }
+
+            using (var borderPen = new Pen(Color.FromArgb(60, 60, 60), 1))
+            {
+                using (var borderPath = new GraphicsPath())
+                {
+                    borderPath.AddArc(0, 0, Radius, Radius, 180, 90);
+                    borderPath.AddArc(this.Width - Radius - 1, 0, Radius, Radius, 270, 90);
+                    borderPath.AddArc(this.Width - Radius - 1, this.Height - Radius - 1, Radius, Radius, 0, 90);
+                    borderPath.AddArc(0, this.Height - Radius - 1, Radius, Radius, 90, 90);
+                    borderPath.CloseFigure();
+
+                    graphics.DrawPath(borderPen, borderPath);
+                }
+            }
         }
     }
 }

@@ -69,7 +69,8 @@ namespace Synergy.Windows
         public void LoadScriptByPath(string filePath)
         {
             string script = File.ReadAllText(filePath);
-            LuaWebExecutor.ExecuteScriptAsync($"SetText(`{script.Replace("\\", "\\\\").Replace("\"", "\\\"")}`)");
+            var jsonScript = new JavaScriptSerializer().Serialize(script);
+            LuaWebExecutor.ExecuteScriptAsync($"SetText(`{jsonScript.Replace("`", "\\\"")}`)");
         }
 
         private void roundedPanelButton6_Click(object sender, System.EventArgs e) => SirHurtAPI.Inject(false);
@@ -88,7 +89,13 @@ namespace Synergy.Windows
         }
 
         private async void roundedPanelButton1_Click(object sender, System.EventArgs e)
-            => SirHurtAPI.QueuedScript = (await LuaWebExecutor.ExecuteScriptAsync("GetText()")).Trim('\"');
+        {
+            var rawScript = (await LuaWebExecutor.ExecuteScriptAsync("GetText()"));
+            var script = new JavaScriptSerializer().Deserialize<string>(rawScript);
+
+            if (script.Length > 0)
+                SirHurtAPI.QueuedScript = script;
+        }
     }
 }
 

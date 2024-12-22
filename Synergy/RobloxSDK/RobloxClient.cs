@@ -44,7 +44,7 @@ namespace Synergy.RobloxSDK
             ProcessStartInfo startinfo = new ProcessStartInfo
             {
                 FileName = destination,
-                Verb = "runas"
+                UseShellExecute = true
             };
 
             System.Diagnostics.Process.Start(startinfo);

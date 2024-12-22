@@ -107,7 +107,7 @@ namespace Synergy.Windows
         Bitmap icon = null;
         private void TitlePanel_Paint(object sender, PaintEventArgs e)
         {
-            var titleFont = new Font("Segoe UI SemiBold", 9.5f);
+            var titleFont = new Font("Segoe UI Bold", 9.5f);
             var titleSize = e.Graphics.MeasureString(this.Text, titleFont);
             var titlePosition = new Point((TitlePanel.Width - (int)titleSize.Width) / 2, (TitlePanel.Height - (int)titleSize.Height) / 2);
             e.Graphics.DrawString(this.Text, titleFont, Brushes.White, titlePosition);
